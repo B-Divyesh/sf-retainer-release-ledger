@@ -1,0 +1,7 @@
+{
+  "asset": "threshold-garden.png",
+  "generated": "2026-08-28",
+  "generator": "/opt/fleet/lib/gen-image.sh using the Azure AI Foundry factory-image deployment",
+  "prompt": "Use case: stylized-concept. Asset type: responsive landing-page editorial hero. Scene/backdrop: a surreal floating island cut from warm cotton ledger paper over a deep bottle-green ink void. Subject: a slender oxidized-brass threshold gate, five terracotta and verdigris stepping-stones forming a clear path, and a small portfolio parcel wrapped in cream paper waiting safely beyond the gate. Style/medium: sophisticated hand-built editorial still life, paper sculpture with subtle graphite and screenprint texture. Composition/framing: wide 3:2 elevated three-quarter view, clean silhouette and breathing room around every object. Lighting/mood: soft raking studio window light, long calm shadows, cautious but hopeful. Color palette: parchment, bottle-green, sealing-wax vermilion, aged brass, verdigris. Materials/textures: torn cotton paper fibers, brushed metal patina, matte wax, faint ledger ruling. Constraints: no people, no hands, no currency symbols, no readable text, no numbers, no logos, no watermark, no UI, no border; avoid glossy plastic, generic fintech imagery, neon gradients.",
+  "review": "Approved: clear gate-and-path metaphor, no logos or readable text, cohesive palette, clean responsive crop."
+}

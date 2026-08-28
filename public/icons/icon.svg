@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Release Ledger gate mark">
+  <rect width="512" height="512" rx="112" fill="#17241f"/>
+  <path d="M130 397V138M382 397V138M100 138h312" fill="none" stroke="#f2ebd9" stroke-width="30" stroke-linecap="round"/>
+  <path d="M168 184h176v168H168z" fill="none" stroke="#c97c43" stroke-width="26"/>
+  <path d="m205 308 58-58 44 44" fill="none" stroke="#f2ebd9" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="112" r="24" fill="#b64231"/>
+</svg>

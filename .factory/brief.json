@@ -1,0 +1,9 @@
+{
+  "slug": "retainer-release-ledger",
+  "title": "Release Ledger",
+  "artifact_class": "pwa-offline",
+  "user": "A freelancer or small service shop taking deposits who needs to know what has been prepaid, what work may be released, and what remains payable.",
+  "smallest_useful_product": "Local job ledger with deposit, milestone, release, refund, and balance events; a client-facing receipt; and a red/amber/green release status.",
+  "monetization": "one-time",
+  "constraints": "Never custody money or imply escrow; configurable currency/tax labels; export CSV/PDF; protect client contact data on-device."
+}
