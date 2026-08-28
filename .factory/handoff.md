@@ -1,54 +1,29 @@
-# Release Ledger — polish round 1 handoff
+# Release Ledger — adversarial review 2 handoff
 
-**Result: PASS**
+**Result: FAIL**
 
-- Work order: `retainer-release-ledger-polish-1`
-- Candidate repaired: `3474c2652e4a9d340429fa1ea7b3f535be5a38a8`
-- Review source: `6bdee6c7d7a1a44a950a657664c3a9eddde8a3bd`
-- Repair commit: `4a4be10` plus the evidence handoff commit
-- Live URL: <https://retainer-release-ledger.sociobot.in>
-- Demo URL: <https://retainer-release-ledger.sociobot.in/demo>
-- Deployment: Azure Static Web Apps production deployment `ec94c6b4-64d5-4abd-9add-25e3eadb2f0d`
+- Work order: `retainer-release-ledger-review-2`
+- Reviewed commit: `814114aaefd9f8ab014e7581536b89e5837bfb47`
+- Report: `.factory/review-2.md`
+- Product code changed: no
 
-## What changed
+## What was done
 
-Every finding in `.factory/review-1.md` and `.factory/verification.md` is resolved. The first screen now names the job and audience, exposes the sample action before artwork on mobile, and keeps the threshold-garden identity.
+Reviewed the live product cold at 390×844 and 1440×900, audited every landing/README sentence, entered and mutated the direct demo, verified reset and real-data isolation, recorded production requests, crawled links, checked route metadata/focus/404 behavior, reran all prior findings, and inspected missed leverage.
 
-The sample path is isolated in `demo:release-ledger`, has realistic seeded jobs, Reset demo, and Start for real. Unsafe release/refund states show Hold. Imports are atomic, amounts are bounded, CSV is formula-safe, and mutation announcements persist.
-
-Routes now have titles, descriptions, canonical metadata, social art, focus announcements, legal navigation, policy headers, correct manifest MIME, immutable asset caching, and an HTTP 404 page.
-
-The external $24 checkout remained unavailable. The product now ships every feature without a purchase or license gate; no broken commercial claim remains.
+The first screen is clear and the direct sandbox is isolated. The primary `Try it with sample data` action is broken because in-app navigation cannot change the storage mode selected at module load. Demo-to-legal navigation also breaks, the first demo phone viewport does not expose realistic records, several claims remain unlisted, copy issues remain, and the static 404 lacks required metadata and the shared skeleton.
 
 ## Verification
 
-From a fresh clone of commit `4a4be10`:
+- `npm ci`: pass, 0 vulnerabilities
+- `npm test`: pass, 7/7
+- `npm run build`: pass; `dist/` created; JS 39.89 kB (12.18 kB gzip)
+- Every exact `.factory/claims.json` command: pass 2/2 in desktop and mobile projects
+- Full Playwright run: all 22 cases executed without a reported test failure
+- Live Axe: zero serious/critical findings on home, demo, demo job, privacy, terms, and 404
+- Live direct demo: separate databases, reset works, Start for real deletes demo storage and preserves real data, 0 external requests
+- Live link crawl: all resolved links return 200; unknown route returns 404
 
-```sh
-npm ci
-npm test
-npm run build
-npm run test:e2e
-```
+## Left to do
 
-Results: 0 audit vulnerabilities, 7/7 unit tests, a production build, and 22/22 browser tests. Every claim command also passed separately in both browser projects.
-
-Built sizes: JS 39.89 KB (12.18 KB gzip), CSS 23.81 KB (6.10 KB gzip), mobile hero 29.59 KB, desktop hero 81.57 KB.
-
-Live verification after deployment:
-
-- Factory verifier: title/lang/h1/main/alt pass; no console errors.
-- Axe: 0 serious or critical issues.
-- Lighthouse: 100 performance, 100 accessibility, 100 best practices, 100 SEO.
-- LCP 1.1 s, TBT 0 ms, CLS 0.
-- Unknown path returns HTTP 404; known routes return 200.
-- CSP, `frame-ancestors`, Permissions-Policy, immutable asset caching, and manifest MIME confirmed.
-- Cold 390×844 check: CTA and three facts appear before artwork; no horizontal overflow; all global targets are 44–48 px high.
-- Live demo reloads offline, uses a separate database, and an excessive release shows Hold with the exact excess.
-- Live HTML matches local `dist/index.html` by SHA-256.
-
-Evidence is in `.factory/evidence/`, with the finding map in `.factory/polish-1.md`.
-
-## Known gaps and next steps
-
-None. Billing can be reconsidered only after the Sociobot product endpoint is enabled and independently smoke-tested.
+Resolve F-2-1 through F-2-9 in `.factory/review-2.md`, add tests that click the public demo and cross the real/demo boundary, then rerun the full adversarial checklist. Screenshots are in `.factory/evidence/review-2/`.
