@@ -2,7 +2,7 @@
 
 Release Ledger helps freelancers and small service shops compare client payments with finished work.
 
-Record deposits, later payments, refunds, completed milestones, and release decisions. See whether recorded payments cover work that is ready to send.
+Record deposits, balance payments, refunds, completed milestones, and release decisions. See whether recorded payments cover work that is ready to send.
 
 Live site: <https://retainer-release-ledger.sociobot.in>
 
@@ -13,7 +13,7 @@ It is not invoicing software, a bank connection, a payment processor, accounting
 ## What it includes
 
 - A release status: Ready, Review, or Hold, with a reason.
-- Entries for deposits, milestones, releases, refunds, and later payments.
+- Entries for deposits, milestones, releases, refunds, and balance payments.
 - Payments received, available amount, amount still due, and finished work not sent.
 - Client receipts that print or save as PDF.
 - JSON backup import and export, plus CSV for all jobs or one job.
@@ -21,11 +21,11 @@ It is not invoicing software, a bank connection, a payment processor, accounting
 - Offline reload after the first visit.
 - Keyboard operation, light and dark themes, and a layout tested at 390 px.
 
-All features are available without an account or purchase.
+No purchase is required to create jobs, use receipts, or import and export records.
 
 ## How release status is calculated
 
-Deposits and later payments increase money received. Refunds reduce money received. Milestones record the value of finished work.
+Deposits and balance payments increase money received. Refunds reduce money received. Milestones record the value of finished work.
 
 A release entry records the decision and value sent. Ready appears when recorded payments cover finished work that has not been sent.
 
@@ -53,7 +53,7 @@ npm run build
 npm run test:e2e
 ```
 
-The build writes the static PWA to `dist/`. Playwright is pinned to `1.58.2`.
+The build writes the offline web app to `dist/`. Playwright is pinned to `1.58.2`.
 
 The factory environment includes Chromium. Elsewhere, install it once with `npx playwright install chromium`.
 
@@ -61,7 +61,7 @@ Every public product claim is listed in [.factory/claims.json](.factory/claims.j
 
 ## Deploy
 
-Deploy `dist/` as a static site. The included Static Web Apps configuration provides routes, headers, caching, and a real 404 response.
+Deploy `dist/` as a static site. Unknown paths return a styled 404 response with the required headers.
 
 The installed pages reopen without a connection after the first visit.
 

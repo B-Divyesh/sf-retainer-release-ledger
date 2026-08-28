@@ -1,17 +1,17 @@
 [
   {
     "id": "demo-isolation",
-    "claim": "The sample demo is separate from your ledger and can be reset or discarded.",
-    "where": "home sample action, demo banner, README",
+    "claim": "The sample demo opens in one click, is separate from your ledger, and can be reset or discarded.",
+    "where": "home sample action, header Demo link, demo banner, README",
     "test": "npm run test:e2e -- --grep @claim:demo-isolation",
-    "sandbox": "fresh browser context; create real data; enter ?demo=1; inspect database names; reset and exit"
+    "sandbox": "fresh browser context; create real data; click the home sample action; inspect sample jobs and database names; test direct demo URLs, reset, and exit"
   },
   {
     "id": "browser-privacy",
-    "claim": "No account or bank connection is needed, and ledger data stays in this browser.",
-    "where": "home facts, limitations, privacy, README",
+    "claim": "No account, bank connection, payment processing, custody, analytics, advertising, or online ledger copy is used; ledger data stays in this browser.",
+    "where": "home facts and limitations, job dialog, receipt, privacy, terms, README",
     "test": "npm run test:e2e -- --grep @claim:browser-privacy",
-    "sandbox": "fresh demo; record requests and localStorage through a mutation; require same-origin traffic only"
+    "sandbox": "fresh demo; record requests through mutation, export, receipt, privacy, and terms; require same-origin traffic and no payment or purchase control"
   },
   {
     "id": "offline-reload",
@@ -47,5 +47,12 @@
     "where": "README",
     "test": "npm run test:e2e -- --grep @claim:accessible-responsive",
     "sandbox": "fresh 390x844 browser; assert focus order, touch targets, overflow, theme, legal titles, and axe"
+  },
+  {
+    "id": "no-purchase-required",
+    "claim": "No purchase is required to create jobs, use receipts, or import and export records.",
+    "where": "README",
+    "test": "npm run test:e2e -- --grep @claim:no-purchase-required",
+    "sandbox": "fresh demo; create an additional job, open its receipt, and exercise JSON and CSV export without a license or checkout"
   }
 ]

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'release-ledger-v2';
+const CACHE_VERSION = 'release-ledger-v3';
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const ASSET_CACHE = `${CACHE_VERSION}-assets`;
 const PRECACHE_URLS = __PRECACHE_URLS__;

@@ -99,6 +99,14 @@ h3 { margin-bottom: 8px; font-size: 1.5rem; }
 .demo-counts { margin-top: 18px; display: flex; gap: 20px; }
 .demo-counts span { display: flex; align-items: baseline; gap: 5px; color: var(--muted); }
 .demo-counts strong { color: var(--text); font: 400 1.8rem var(--display); }
+.demo-preview { margin: 20px 0; padding: 16px 18px 14px; border: 1px solid var(--rule); border-left: 4px solid var(--success); border-radius: 2px 16px 2px 2px; background: color-mix(in srgb, var(--surface) 72%, transparent); }
+.demo-preview .eyebrow { margin-bottom: 5px; }
+.demo-preview h2 { margin-bottom: 9px; font-size: 1.55rem; }
+.demo-preview a { display: grid; gap: 5px; color: var(--text); text-decoration: none; }
+.demo-preview a:hover strong, .demo-preview a:focus-visible strong { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.demo-preview-status { display: inline-flex; align-items: center; gap: 7px; color: var(--success); font-size: 13px; font-weight: 800; }
+.demo-preview-status .status-orb { width: 10px; height: 10px; }
+.demo-preview a > span:last-of-type, .demo-preview small { color: var(--muted); }
 .hero-art { position: relative; overflow: hidden; border-radius: 50% 48% 46% 54% / 42% 45% 55% 58%; box-shadow: var(--shadow); animation: art-arrive 700ms cubic-bezier(.2,.7,.2,1) both; }
 .hero-art::after { content: ''; position: absolute; inset: 12px; border: 1px solid rgb(255 255 255 / 28%); border-radius: inherit; pointer-events: none; }
 .hero-art img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
@@ -254,6 +262,7 @@ table { width: 100%; border-collapse: collapse; font-size: 14px; } th, td { padd
   .site-header { min-height: 66px; padding-inline: 18px; }.site-header nav { gap: 4px; }.site-header .nav-link:first-child { display: none; }.nav-link { padding-inline: 7px; }.brand { font-size: 16px; }.brand-mark { width: 34px; height: 34px; }
   .demo-banner { align-items: stretch; flex-direction: column; padding: 8px 18px; }.demo-banner span { width: 100%; }.demo-banner button { flex: 1; }
   .hero { margin-top: 10px; padding-inline: 18px; gap: 24px; }.hero-art { border-radius: 34px 3px 34px 3px; }.hero-copy { padding-top: 8px; }h1 { font-size: clamp(2.65rem, 12vw, 3.6rem); }.hero-actions .button { width: 100%; }.plain-facts { display: grid; gap: 7px; }
+  .demo-hero { gap: 0; padding-bottom: 38px; }.demo-hero .hero-art { display: none; }.demo-preview { margin: 16px 0; padding: 14px; }.demo-preview h2 { font-size: 1.35rem; }.demo-hero .lede { margin-bottom: 16px; }.demo-hero .hero-actions { margin-top: 0; }.demo-hero .plain-facts { display: none; }
   .workspace { padding: 48px 18px 60px; }.section-heading { align-items: start; flex-direction: column; }.summary-strip { width: 100%; justify-content: space-between; gap: 8px; }
   .job-row { grid-template-columns: 18px minmax(0, 1fr) 26px; gap: 10px; }.job-row-money { grid-column: 2; min-width: 0; text-align: left; }.row-arrow { grid-column: 3; grid-row: 1 / span 2; }.empty-state { grid-template-columns: 1fr; }.empty-number { font-size: 3.2rem; }
   .ownership, .unlock { margin: 0 18px 60px; padding: 32px 24px; border-radius: 2px 34px 2px 2px; }.ownership-actions .button, .unlock-actions .button { width: 100%; }

@@ -15,6 +15,10 @@ test('route metadata, focus, navigation, and not-found state work', async ({ pag
   await page.goBack(); await expect(page.getByRole('heading', { level: 1 })).toBeFocused(); await page.goto('/not-a-real-route'); await expect(page).toHaveTitle('Page not found — Release Ledger'); await expect(page.getByRole('heading', { name: 'This page is not in the ledger' })).toBeVisible();
 });
 
+test('static 404 has product metadata and the shared site skeleton', async ({ page }) => {
+  await page.goto('/404.html'); await expect(page).toHaveTitle('Page not found — Release Ledger'); await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /does not exist/); await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/404$/); await expect(page.getByRole('banner').getByRole('link', { name: 'Release Ledger home' })).toBeVisible(); await expect(page.getByRole('contentinfo').getByRole('link', { name: 'Terms' })).toBeVisible(); await expect(page.getByRole('heading', { name: 'This page is not in the ledger' })).toBeVisible(); const axe = await new AxeBuilder({ page }).analyze(); expect(axe.violations.filter(v => ['serious', 'critical'].includes(v.impact ?? ''))).toEqual([]);
+});
+
 test('invalid import is atomic, extreme amounts are blocked, and CSV cells are inert', async ({ page }) => {
   await page.goto('/'); const invalid = { schemaVersion: 1, exportedAt: new Date().toISOString(), settings: { theme: 'system', businessName: '' }, jobs: [{ id: 'valid-prefix', name: 'Partially persisted', clientName: '', clientEmail: '', totalAmount: 100, currency: 'USD', taxLabel: 'Tax', reference: '', receiptNote: '', archived: false, createdAt: '', updatedAt: '' }, { id: '', name: '', totalAmount: 4 }], events: [] };
   await page.locator('#import-file').setInputFiles({ name: 'bad.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(invalid)) }); await expect(page.locator('#toast')).toContainText('Nothing was imported');
@@ -24,5 +28,5 @@ test('invalid import is atomic, extreme amounts are blocked, and CSV cells are i
 });
 
 test('all pages have no serious or critical axe violations', async ({ page }) => {
-  for (const path of ['/', '/demo', '/privacy', '/terms', '/not-a-real-route']) { await page.goto(path); const results = await new AxeBuilder({ page }).analyze(); expect(results.violations.filter(v => ['serious', 'critical'].includes(v.impact ?? '')), path).toEqual([]); }
+  for (const path of ['/', '/demo', '/privacy', '/terms', '/not-a-real-route', '/404.html']) { await page.goto(path); const results = await new AxeBuilder({ page }).analyze(); expect(results.violations.filter(v => ['serious', 'critical'].includes(v.impact ?? '')), path).toEqual([]); }
 });
