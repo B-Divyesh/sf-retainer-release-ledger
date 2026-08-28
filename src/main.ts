@@ -129,7 +129,7 @@ async function renderHome(): Promise<void> {
         </div>
         ${active.length ? `<ul class="job-list">${jobCards}</ul>` : `
           <div class="empty-state">
-            <span class="empty-number">01</span>
+            <span class="empty-number" aria-hidden="true">01</span>
             <div><h3>Begin with the agreement.</h3><p>Create a job with its agreed total. Then record the deposit and each completed milestone as they happen.</p><button class="text-button" id="empty-new-job" type="button">Create your first job ${icon('arrow')}</button></div>
           </div>`}
         ${archived.length ? `<details class="archive"><summary>${archived.length} archived ${archived.length === 1 ? 'job' : 'jobs'}</summary><ul class="job-list compact">${archived.map((job) => `<li><a class="job-row route-link" href="/jobs/${encodeURIComponent(job.id)}"><span class="job-row-main"><strong>${escapeHtml(job.name)}</strong><small>${escapeHtml(job.clientName)}</small></span><span class="row-arrow">${icon('arrow')}</span></a></li>`).join('')}</ul></details>` : ''}
