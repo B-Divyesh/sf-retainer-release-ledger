@@ -1,66 +1,81 @@
 # Release Ledger
 
-Release Ledger is a private, local-first release gate for freelancers and small service shops. It records deposits, later payments, refunds, completed milestones, and release decisions so the person handing over work can answer one question: **is the work recorded as ready and covered?**
+Release Ledger helps freelancers and small service shops compare client payments with finished work.
 
-Live target: https://retainer-release-ledger.sociobot.in
+Record deposits, later payments, refunds, completed milestones, and release decisions. See whether recorded payments cover work that is ready to send.
 
-It is deliberately not invoicing software, a bank connection, a payment processor, accounting advice, or escrow.
+Live site: <https://retainer-release-ledger.sociobot.in>
 
-## What v1 includes
+Try the isolated sample: <https://retainer-release-ledger.sociobot.in/demo>
 
-- Per-job red / amber / green release verdict with a plain-language reason
-- Immutable-style event history for deposit, milestone, release, refund, and balance events
-- Net paid, available coverage, remaining payable, and unreleased milestone totals
-- Client receipt with print-to-PDF output
-- Whole-ledger JSON backup/import and CSV export; per-job CSV export
-- Configurable currency, tax label, client details, reference, and agreed total
-- IndexedDB storage, PWA installation, cached app shell, and tested offline reload
-- Light/dark themes, keyboard-complete dialogs, responsive 390px layout, privacy and terms pages
-- Useful free tier (three active jobs); one-time $24 Owner unlock for unlimited active jobs and custom receipt notes through the Sociobot billing API
+It is not invoicing software, a bank connection, a payment processor, accounting advice, or escrow.
 
-## How the verdict works
+## What it includes
 
-Deposits and balance payments increase money received. Refunds reduce it. Milestones record the value of work now ready. Release events preserve the decision and value actually handed over. “Ready to release” appears when available recorded payments cover pending milestone work. A recorded hold always shows as held until a newer decision changes the state.
+- A release status: Ready, Review, or Hold, with a reason.
+- Entries for deposits, milestones, releases, refunds, and later payments.
+- Payments received, available amount, amount still due, and finished work not sent.
+- Client receipts that print or save as PDF.
+- JSON backup import and export, plus CSV for all jobs or one job.
+- Currency, tax label, client details, reference, agreed total, and receipt note fields.
+- Offline reload after the first visit.
+- Keyboard operation, light and dark themes, and a layout tested at 390 px.
 
-The verdict is only as accurate as the entries and is not a guarantee against payment reversal or dispute.
+All features are available without an account or purchase.
 
-## Develop
+## How release status is calculated
 
-Requires Node.js 20+.
+Deposits and later payments increase money received. Refunds reduce money received. Milestones record the value of finished work.
+
+A release entry records the decision and value sent. Ready appears when recorded payments cover finished work that has not been sent.
+
+A recorded Hold remains until a newer decision changes it. Releasing beyond recorded payments or finished work always shows Hold.
+
+The release status depends on your entries. It cannot guarantee that a payment will not be reversed or disputed.
+
+## Sample demo
+
+Open `/demo` or `/?demo=1` to load three sample jobs. Demo data uses the separate `demo:release-ledger` browser database.
+
+Reset demo restores the sample. Start for real deletes demo data and returns to your ledger.
+
+See [.factory/demo.md](.factory/demo.md) for the sample records and verification path.
+
+## Run and test
+
+Use Node.js 20 or later.
 
 ```sh
 npm ci
 npm run dev
+npm test
+npm run build
+npm run test:e2e
 ```
 
-Quality gates:
+The build writes the static PWA to `dist/`. Playwright is pinned to `1.58.2`.
 
-```sh
-npm test          # calculation unit tests
-npm run build     # exact production build; outputs dist/index.html
-npm run test:e2e # desktop + 390px flows, axe, offline reload
-npm run check     # unit tests + build
-```
+The factory environment includes Chromium. Elsewhere, install it once with `npx playwright install chromium`.
 
-Playwright is pinned to `1.58.2`. The factory image already includes its Chromium build; elsewhere, run `npx playwright install chromium` once.
+Every public product claim is listed in [.factory/claims.json](.factory/claims.json). Each entry includes its isolated test command.
 
-## Deploy and configuration
+## Deploy
 
-Deploy the contents of `dist/` as a static SPA with unknown routes falling back to `index.html`. The service worker handles installed/offline navigation after first load.
+Deploy `dist/` as a static site. The included Static Web Apps configuration provides routes, headers, caching, and a real 404 response.
 
-The production billing base defaults to `https://api.sociobot.in`. Staging can override it at build time:
-
-```sh
-VITE_BILLING_API_BASE=https://pilot-api.sociobot.in npm run build
-```
-
-The checkout and verification URLs are derived from the product slug; no billing product ID or secret is stored in this repository.
+The installed pages reopen without a connection after the first visit.
 
 ## Privacy and data ownership
 
-Job and client data stays in IndexedDB on the current browser profile. License tokens and cached verification status use localStorage. There is no analytics, advertising, remote ledger sync, third-party font, or runtime CDN. Users should export JSON backups before clearing browser data.
+Job and client data stays in this browser profile. Demo data stays in its separate database until reset or exit.
 
-See [.factory/brief.json](.factory/brief.json) for scope, [.factory/design.md](.factory/design.md) for the visual system and artwork provenance, and [.factory/handoff.md](.factory/handoff.md) for verification results.
+There is no analytics, advertising, bank connection, or online copy of the ledger. Export a JSON backup before clearing browser data.
+
+Read the live [privacy policy](https://retainer-release-ledger.sociobot.in/privacy) and [terms](https://retainer-release-ledger.sociobot.in/terms).
+
+## Product records
+
+See [.factory/brief.json](.factory/brief.json) for scope and [.factory/design.md](.factory/design.md) for visual and artwork provenance.
 
 ## License
 

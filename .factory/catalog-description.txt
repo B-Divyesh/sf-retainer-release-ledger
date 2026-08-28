@@ -1,0 +1,1 @@
+Compare client payments with finished work before sending files.

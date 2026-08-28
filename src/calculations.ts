@@ -12,6 +12,8 @@ export interface JobTotals {
   statusReason: string;
 }
 
+export const MAX_AMOUNT = 10_000_000;
+
 export function calculateTotals(job: Job, events: LedgerEvent[]): JobTotals {
   const relevant = events.filter((event) => event.jobId === job.id);
   const paid = relevant.reduce((sum, event) => {
@@ -27,6 +29,15 @@ export function calculateTotals(job: Job, events: LedgerEvent[]): JobTotals {
   const lastDecision = [...relevant]
     .filter((event) => event.type === 'release' && event.decision)
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0]?.decision;
+
+  if (paid < 0) {
+    return { paid, earned, released, available, payable, pendingWork, status: 'held', statusLabel: 'Hold release', statusReason: `${moneyless(Math.abs(paid))} was refunded beyond recorded payments.` };
+  }
+  const coveredRelease = Math.min(paid, earned);
+  if (released > coveredRelease) {
+    const excess = released - Math.max(0, coveredRelease);
+    return { paid, earned, released, available, payable, pendingWork, status: 'held', statusLabel: 'Hold release', statusReason: `${moneyless(excess)} was released beyond recorded payments or finished work.` };
+  }
 
   if (lastDecision === 'held') {
     return { paid, earned, released, available, payable, pendingWork, status: 'held', statusLabel: 'Hold release', statusReason: 'The latest recorded decision says to hold this work.' };

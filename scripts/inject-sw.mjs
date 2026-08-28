@@ -2,7 +2,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 
 const assets = await readdir(new URL('../dist/assets/', import.meta.url));
 const precache = [...new Set([
-  '/', '/index.html', '/offline.html', '/manifest.webmanifest', '/icons/icon.svg', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/icon-maskable-512.png',
+  '/', '/index.html', '/demo', '/privacy', '/terms', '/offline.html', '/manifest.webmanifest', '/icons/icon.svg', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/icon-maskable-512.png', '/icons/apple-touch-icon.png',
   '/assets/threshold-garden-720.webp', '/assets/threshold-garden-1200.webp',
   ...assets.map((name) => `/assets/${name}`),
 ])];
