@@ -1,0 +1,77 @@
+{
+  "firstScreen": {
+    "title": "Release Ledger — know when work is safe to release",
+    "h1": "Know when client work is safe to release",
+    "sampleBox": {
+      "x": 18,
+      "y": 409.6875,
+      "width": 354,
+      "height": 48
+    },
+    "factsBox": {
+      "x": 18,
+      "y": 591.6875,
+      "width": 354,
+      "height": 94
+    },
+    "overflow": 0
+  },
+  "firstTab": "Skip to main content",
+  "demoBanner": "Demo — sample data, nothing is saved to your ledger",
+  "dbs": [
+    "demo:release-ledger",
+    "release-ledger"
+  ],
+  "unsafe": {
+    "status": "Hold release",
+    "reason": "1,000 was released beyond recorded payments or finished work."
+  },
+  "offline": {
+    "heading": "Northstar brand handoff",
+    "banner": "Offline — saved records are available on this device."
+  },
+  "privacyTitle": "Privacy — Release Ledger",
+  "termsTitle": "Terms — Release Ledger",
+  "routeFocus": true,
+  "targets": [
+    {
+      "text": "Release Ledger",
+      "w": 155.953125,
+      "h": 48
+    },
+    {
+      "text": "Demo",
+      "w": 65.796875,
+      "h": 44
+    },
+    {
+      "text": "Privacy",
+      "w": 80.25,
+      "h": 44
+    },
+    {
+      "text": "",
+      "w": 44,
+      "h": 44
+    },
+    {
+      "text": "Privacy",
+      "w": 63.078125,
+      "h": 44
+    },
+    {
+      "text": "Terms",
+      "w": 54.296875,
+      "h": 44
+    },
+    {
+      "text": "Built by Param Factory (external site)",
+      "w": 162.515625,
+      "h": 44
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "axeSerious": [],
+  "purchaseLinkCount": 0
+}
