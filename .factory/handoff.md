@@ -1,29 +1,50 @@
-# Release Ledger — adversarial review 2 handoff
+# Release Ledger — polish round 2 handoff
 
-**Result: FAIL**
+**Result: PASS**
 
-- Work order: `retainer-release-ledger-review-2`
-- Reviewed commit: `814114aaefd9f8ab014e7581536b89e5837bfb47`
-- Report: `.factory/review-2.md`
-- Product code changed: no
+- Work order: `retainer-release-ledger-polish-2`
+- Base reviewed: `814114aaefd9f8ab014e7581536b89e5837bfb47`
+- Repair commit: `6aefad5b85d2016b75cfa9378bc852994b1a841f`
+- Deployment: <https://retainer-release-ledger.sociobot.in>
+- Deploy tool: `/opt/fleet/lib/deploy-static.sh retainer-release-ledger dist`
+- Azure deployment ID: `2ced8112-9bb7-45d8-b8d4-f1e592c1f863`
 
-## What was done
+## What changed
 
-Reviewed the live product cold at 390×844 and 1440×900, audited every landing/README sentence, entered and mutated the direct demo, verified reset and real-data isolation, recorded production requests, crawled links, checked route metadata/focus/404 behavior, reran all prior findings, and inspected missed leverage.
+- Demo entry is a true real↔demo document transition, so the visible CTA and header link select `demo:release-ledger` before the app opens.
+- The demo phone screen immediately shows Northstar brand handoff, Northstar Coffee, received money, a Ready reason, and a recent entry. It retains reset and discard controls.
+- Public privacy/custody/payment/analytics/advertising/online-copy wording and the no-purchase promise are in `.factory/claims.json`, with observable tests.
+- Copy now consistently calls the post-deposit entry a **balance payment**, uses `release status`, and uses plain section/deployment wording.
+- Static 404 now has full route metadata, icons, product header/footer, legal links, factory credit, and build label while Static Web Apps preserves the HTTP 404 response.
+- Manifest and service-worker cache version advanced to v3.
 
-The first screen is clear and the direct sandbox is isolated. The primary `Try it with sample data` action is broken because in-app navigation cannot change the storage mode selected at module load. Demo-to-legal navigation also breaks, the first demo phone viewport does not expose realistic records, several claims remain unlisted, copy issues remain, and the static 404 lacks required metadata and the shared skeleton.
+## Exact verification evidence
 
-## Verification
+Clean remote clone: `/tmp/release-ledger-clean-Sc1mfE` at `6aefad5`.
 
-- `npm ci`: pass, 0 vulnerabilities
-- `npm test`: pass, 7/7
-- `npm run build`: pass; `dist/` created; JS 39.89 kB (12.18 kB gzip)
-- Every exact `.factory/claims.json` command: pass 2/2 in desktop and mobile projects
-- Full Playwright run: all 22 cases executed without a reported test failure
-- Live Axe: zero serious/critical findings on home, demo, demo job, privacy, terms, and 404
-- Live direct demo: separate databases, reset works, Start for real deletes demo storage and preserves real data, 0 external requests
-- Live link crawl: all resolved links return 200; unknown route returns 404
+- `npm ci`: passed; 0 vulnerabilities.
+- `npm test`: 7/7 passed.
+- `npm run build`: passed; `dist/` produced. JS 40.71 kB (12.35 kB gzip); CSS 24.85 kB (6.30 kB gzip).
+- `npm run test:e2e`: 26/26 passed across desktop Chromium and 390 px Chromium. This includes Axe checks with 0 serious/critical violations, keyboard/focus, static 404 metadata, responsive targets, privacy requests, and offline sample reload.
+- Every exact claim command passed separately in that clean clone, each in both browser projects:
+  - `npm run test:e2e -- --grep @claim:demo-isolation`
+  - `npm run test:e2e -- --grep @claim:browser-privacy`
+  - `npm run test:e2e -- --grep @claim:offline-reload`
+  - `npm run test:e2e -- --grep @claim:data-export`
+  - `npm run test:e2e -- --grep @claim:release-status`
+  - `npm run test:e2e -- --grep @claim:client-receipt`
+  - `npm run test:e2e -- --grep @claim:accessible-responsive`
+  - `npm run test:e2e -- --grep @claim:no-purchase-required`
 
-## Left to do
+## Live cold recheck
 
-Resolve F-2-1 through F-2-9 in `.factory/review-2.md`, add tests that click the public demo and cross the real/demo boundary, then rerun the full adversarial checklist. Screenshots are in `.factory/evidence/review-2/`.
+After deployment, a fresh 390×844 Chromium context opened the live home, created a real `Cold real job`, then clicked the visible sample CTA. The result was `/demo` with the persistent banner, Northstar sample preview, and no real job present. Demo → Privacy performed a correct full transition without the demo banner. A cold unknown path returned the styled static 404 with title, canonical, header, and footer. Normal live home/demo/privacy flows had no console errors; Chromium reports the expected failed-resource message when navigating to the deliberately HTTP-404 path.
+
+- [Live cold-check JSON](evidence/live-polish-2-check.json)
+- [Live mobile demo screenshot](evidence/live-polish-2-demo-mobile.png)
+- [Local static-404 screenshot](evidence/polish-2-404.png)
+- [Finding-by-finding map](polish-2.md)
+
+## Known gaps and next steps
+
+None. The product remains a static, local-first offline PWA; deployment infrastructure was not otherwise changed.

@@ -2,7 +2,7 @@
 
 Live URL: <https://retainer-release-ledger.sociobot.in>
 
-This pass rechecked every finding in `review-1.md`, `polish-1.md`, and `review-2.md`. Local visual evidence is [mobile demo](evidence/polish-2-demo-mobile.png), [desktop demo](evidence/polish-2-demo-desktop.png), and [404](evidence/polish-2-404.png). Live evidence is recorded after deployment in the handoff.
+This pass rechecked every finding in `review-1.md`, `polish-1.md`, and `review-2.md`. Visual evidence is [local mobile demo](evidence/polish-2-demo-mobile.png), [local desktop demo](evidence/polish-2-demo-desktop.png), [404](evidence/polish-2-404.png), and [cold live demo](evidence/live-polish-2-demo-mobile.png). The cold live route check is [recorded here](evidence/live-polish-2-check.json).
 
 | Finding ID | Change made | Evidence |
 | --- | --- | --- |
@@ -45,4 +45,4 @@ This pass rechecked every finding in `review-1.md`, `polish-1.md`, and `review-2
 - `npm test`: 7/7 passed.
 - `npm run build`: passed; `dist/` created; initial JS 40.71 kB (12.35 kB gzip), CSS 24.85 kB (6.30 kB gzip).
 - `npm run test:e2e`: 26/26 passed in desktop Chromium and 390 px Chromium; serious/critical Axe violations: 0.
-- Every command in `.factory/claims.json` was run separately after the final commit from a clean clone; results are in `.factory/handoff.md`.
+- Every command in `.factory/claims.json` passed separately after the final commit from clean clone `/tmp/release-ledger-clean-Sc1mfE`; results are in `.factory/handoff.md`.

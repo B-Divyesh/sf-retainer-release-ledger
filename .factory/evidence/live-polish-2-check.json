@@ -1,0 +1,29 @@
+{
+  "cold": {
+    "title": "Release Ledger — know when work is safe to release",
+    "h1": "Know when client work is safe to release",
+    "sampleVisible": true
+  },
+  "demo": {
+    "url": "https://retainer-release-ledger.sociobot.in/demo",
+    "banner": true,
+    "northstar": true,
+    "realAbsent": true,
+    "preview": true
+  },
+  "privacy": {
+    "url": "https://retainer-release-ledger.sociobot.in/privacy",
+    "title": "Privacy — Release Ledger",
+    "noDemoBanner": true
+  },
+  "notFound": {
+    "title": "Page not found — Release Ledger",
+    "h1": "This page is not in the ledger",
+    "header": 1,
+    "footer": 1,
+    "canonical": "https://retainer-release-ledger.sociobot.in/404"
+  },
+  "errors": [
+    "Failed to load resource: the server responded with a status of 404 ()"
+  ]
+}
