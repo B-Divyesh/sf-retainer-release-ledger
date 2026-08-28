@@ -40,6 +40,8 @@ Clean remote clone: `/tmp/release-ledger-clean-Sc1mfE` at `6aefad5`.
 
 After deployment, a fresh 390×844 Chromium context opened the live home, created a real `Cold real job`, then clicked the visible sample CTA. The result was `/demo` with the persistent banner, Northstar sample preview, and no real job present. Demo → Privacy performed a correct full transition without the demo banner. A cold unknown path returned the styled static 404 with title, canonical, header, and footer. Normal live home/demo/privacy flows had no console errors; Chromium reports the expected failed-resource message when navigating to the deliberately HTTP-404 path.
 
+A final live Axe sweep of `/`, `/demo`, `/demo/jobs/demo-brand`, `/privacy`, `/terms`, and `/404` found 0 serious/critical violations on every route. Each route had exactly one `<h1>` and one `<main>`, correct route title, and no console errors.
+
 - [Live cold-check JSON](evidence/live-polish-2-check.json)
 - [Live mobile demo screenshot](evidence/live-polish-2-demo-mobile.png)
 - [Local static-404 screenshot](evidence/polish-2-404.png)
